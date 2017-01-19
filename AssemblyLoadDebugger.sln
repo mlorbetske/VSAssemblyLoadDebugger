@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26116.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssemblyLoadDebugger", "AssemblyLoadDebugger\AssemblyLoadDebugger.csproj", "{3C58ECA5-7983-4A86-AAF6-F98769343FBA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssemblyLoadDebugger", "src\AssemblyLoadDebugger.csproj", "{3C58ECA5-7983-4A86-AAF6-F98769343FBA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

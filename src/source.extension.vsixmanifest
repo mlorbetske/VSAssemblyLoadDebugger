@@ -1,9 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="AssemblyLoadDebugger.Mike Lorbetske.34f00824-cb6a-4bc1-a27d-7375239cdd2f" Version="1.0" Language="en-US" Publisher="Mike Lorbetske" />
-    <DisplayName>AssemblyLoadDebugger</DisplayName>
-    <Description>Empty VSIX Project.</Description>
+    <Identity Id="34f00824-cb6a-4bc1-a27d-7375239cdd2f" Version="1.0" Language="en-US" Publisher="Mike Lorbetske" />
+    <DisplayName>Assembly Load Debugger</DisplayName>
+    <Description xml:space="preserve">Shows what assemblies Visual Studio loads and what component caused it to load</Description>
+    <Icon>Resources\Icon.png</Icon>
+    <PreviewImage>Resources\Icon.png</PreviewImage>
+    <Tags>assembly, performance, assemblies</Tags>
   </Metadata>
   <Installation>
     <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[15.0]" />

@@ -4,8 +4,9 @@
   <PropertyGroup>
     <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <StartAction>Program</StartAction>
+    <StartProgram>$(DevEnvDir)\devenv.exe</StartProgram>
+    <StartArguments>/rootsuffix Exp</StartArguments>
     <UseCodebase>true</UseCodebase>
   </PropertyGroup>
   <PropertyGroup>
@@ -51,18 +52,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ActionCommand.cs" />
-    <Compile Include="AssemblyLoadDebuggerControlViewModel.cs" />
-    <Compile Include="AssemblyLoadDebuggerCommand.cs" />
-    <Compile Include="AssemblyLoadDebuggerControl.xaml.cs">
+    <Compile Include="ToolWindow\ActionCommand.cs" />
+    <Compile Include="ToolWindow\AssemblyLoadDebuggerControlViewModel.cs" />
+    <Compile Include="Commands\OpenToolWindowCommand.cs" />
+    <Compile Include="ToolWindow\AssemblyLoadDebuggerControl.xaml.cs">
       <DependentUpon>AssemblyLoadDebuggerControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="AssemblyLoadDebuggerPackage.cs" />
-    <Compile Include="AssemblyLoadDebuggerToolWindow.cs" />
-    <Compile Include="AssetCache.cs" />
+    <Compile Include="ToolWindow\AssemblyLoadDebuggerToolWindow.cs" />
+    <Compile Include="ToolWindow\AssetCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SharedVsTheme.cs" />
-    <Compile Include="WpfUtil.cs" />
+    <Compile Include="ToolWindow\SharedVsTheme.cs" />
+    <Compile Include="ToolWindow\WpfUtil.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -73,16 +74,16 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\Icon.png">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <VSCTCompile Include="AssemblyLoadDebuggerPackage.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
     </VSCTCompile>
-    <Content Include="index.html" />
-    <Content Include="Resources\AssemblyLoadDebuggerCommand.png" />
     <Content Include="Resources\AssemblyLoadDebuggerPackage.ico" />
-    <Content Include="stylesheet.css" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="AssemblyLoadDebuggerControl.xaml">
+    <Page Include="ToolWindow\AssemblyLoadDebuggerControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -219,7 +220,7 @@
     <Error Condition="!Exists('..\packages\Microsoft.VSSDK.BuildTools.15.0.26109-RC3\build\Microsoft.VSSDK.BuildTools.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.VSSDK.BuildTools.15.0.26109-RC3\build\Microsoft.VSSDK.BuildTools.targets'))" />
   </Target>
   <Import Project="..\packages\Microsoft.VSSDK.BuildTools.15.0.26109-RC3\build\Microsoft.VSSDK.BuildTools.targets" Condition="Exists('..\packages\Microsoft.VSSDK.BuildTools.15.0.26109-RC3\build\Microsoft.VSSDK.BuildTools.targets')" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

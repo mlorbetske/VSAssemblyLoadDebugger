@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <Extern href="stdidcmd.h"/>
+  <Extern href="vsshlids.h"/>
+  <Include href="KnownImageIds.vsct"/>
+
+  <Commands package="guidAssemblyLoadDebuggerPackage">
+    <Buttons>
+      <Button guid="guidAssemblyLoadDebuggerPackageCmdSet" id="AssemblyLoadDebuggerCommandId" priority="0x0100" type="Button">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_WNDO_OTRWNDWS1"/>
+        <Icon guid="ImageCatalogGuid" id="DebugHistorySeekToFrame" />
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <Strings>
+          <ButtonText>Assembly Load Debugger</ButtonText>
+        </Strings>
+      </Button>
+    </Buttons>
+  </Commands>
+
+  <Symbols>
+    <GuidSymbol name="guidAssemblyLoadDebuggerPackage" value="{b2195adc-e364-4d6e-9d08-74b500b223f4}" />
+
+    <GuidSymbol name="guidAssemblyLoadDebuggerPackageCmdSet" value="{852872c5-92a2-4343-9bdd-ffd69e03f226}">
+      <IDSymbol name="AssemblyLoadDebuggerCommandId" value="0x0100" />
+    </GuidSymbol>
+  </Symbols>
+</CommandTable>
