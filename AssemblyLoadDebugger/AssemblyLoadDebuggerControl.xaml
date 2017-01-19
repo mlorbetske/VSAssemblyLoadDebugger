@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="AssemblyLoadDebugger.AssemblyLoadDebuggerControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:AssemblyLoadDebugger"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300"
+             d:DataContext="{d:DesignInstance Type=local:AssemblyLoadDebuggerControlViewModel}"
+             Name="MyToolWindow">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <ToggleButton HorizontalAlignment="Left" Margin="4"
+                      Command="{Binding Path=ToggleCaptureCommand, Mode=OneTime}" 
+                      IsChecked="{Binding Path=IsCapturing, Mode=OneWay}"
+                      Content="Capture"/>
+        <Grid Grid.Row="1" Margin="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0">Search:</Label>
+            <TextBox Grid.Column="1" Text="{Binding Path=SearchString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        </Grid>
+        <ListBox Grid.Row="2" ItemsSource="{Binding Path=FilteredEvents, Mode=OneWay}">
+            <ListBox.ItemTemplate>
+                <DataTemplate DataType="System.String">
+                    <TextBlock>
+                        <Hyperlink Command="{Binding Path=DataContext.OpenLogCommand, Mode=OneWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:AssemblyLoadDebuggerControl}}"
+                                   CommandParameter="{Binding Mode=OneWay}">
+                            <Run Text="{Binding Mode=OneWay}" />
+                        </Hyperlink>
+                    </TextBlock>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button Grid.Row="3" HorizontalAlignment="Left" Margin="4"
+                Command="{Binding Path=RemoveBreakConditionCommand, Mode=OneWay}"
+                CommandParameter="{Binding Path=SelectedBreakCondition, Mode=OneWay}">Remove</Button>
+        <Label Grid.Row="4">Break conditions (regular expressions)</Label>
+        <ListBox Grid.Row="5" ItemsSource="{Binding Path=BreakOn, Mode=OneWay}" SelectedItem="{Binding Path=SelectedBreakCondition, Mode=TwoWay}" />
+        <Grid Grid.Row="6" Margin="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Column="0" Text="{Binding Path=UserEntryBreakCondition, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <Button Grid.Column="1" 
+                    Command="{Binding Path=AddBreakConditionCommand, Mode=OneWay}" 
+                    CommandParameter="{Binding Path=UserEntryBreakCondition, Mode=OneWay}"
+                    Content="Add" />
+        </Grid>
+    </Grid>
+</UserControl>
