@@ -154,6 +154,27 @@ namespace AssemblyLoadDebugger
             s += $"Main Module File: {Process.GetCurrentProcess().MainModule.FileName}{Environment.NewLine}";
             s += $"Main Module Version: {Process.GetCurrentProcess().MainModule.FileVersionInfo.FileVersion}{Environment.NewLine}";
             s += $"Managed thread ID: {Thread.CurrentThread.ManagedThreadId}{Environment.NewLine}";
+            s += $"Image: {args.LoadedAssembly.FullName}{Environment.NewLine}";
+            s += $"Codebase: {args.LoadedAssembly.CodeBase}{Environment.NewLine}";
+            s += $"Location: {args.LoadedAssembly.Location}{Environment.NewLine}";
+            s += $"Name: {args.LoadedAssembly.GetName().Name}{Environment.NewLine}";
+            s += $"Version: {args.LoadedAssembly.GetName().Version}{Environment.NewLine}";
+            s += $"Architecture: {args.LoadedAssembly.GetName().ProcessorArchitecture}{Environment.NewLine}";
+            s += $"Culture: {args.LoadedAssembly.GetName().CultureName}{Environment.NewLine}";
+
+            byte[] publicKey = args.LoadedAssembly.GetName().GetPublicKey();
+            if (publicKey != null)
+            {
+                string hex = string.Join("", publicKey.Select(x => x.ToString("X2")));
+                s += $"Public Key: {hex}{Environment.NewLine}";
+                s += $"Hash Algorithm: {args.LoadedAssembly.GetName().HashAlgorithm}{Environment.NewLine}";
+            }
+
+            s += $"Image Runtime Version: {args.LoadedAssembly.ImageRuntimeVersion}{Environment.NewLine}";
+            s += $"Flags: {args.LoadedAssembly.GetName().Flags}{Environment.NewLine}";
+            s += $"Is Dynamic: {args.LoadedAssembly.IsDynamic}{Environment.NewLine}";
+            s += $"Is Fully Trusted: {args.LoadedAssembly.IsFullyTrusted}{Environment.NewLine}";
+            s += $"Reflection Only: {args.LoadedAssembly.ReflectionOnly}{Environment.NewLine}";
             s += $"Time: {DateTime.Now}{Environment.NewLine}";
             s += new StackTrace(3, true).ToString();
             Application.Current.Dispatcher.BeginInvoke((Action)(() => Events.Add(args.LoadedAssembly.FullName)), System.Windows.Threading.DispatcherPriority.ApplicationIdle);
