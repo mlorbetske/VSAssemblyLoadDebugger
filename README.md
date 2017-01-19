@@ -2,8 +2,7 @@
 
 [![Build status](https://ci.appveyor.com/api/projects/status/gt39efg1tukpr4j9?svg=true)](https://ci.appveyor.com/project/madskristensen/vsassemblyloaddebugger)
 
-<!-- Update the VS Gallery link after you upload the VSIX-->
-Download this extension from the [VS Gallery](https://visualstudiogallery.msdn.microsoft.com/[GuidFromGallery])
+Download this extension from the [Marketplace](https://marketplace.visualstudio.com/vsgallery/10514a28-4247-49a7-b88d-b077471faca5)
 or get the [CI build](http://vsixgallery.com/extension/34f00824-cb6a-4bc1-a27d-7375239cdd2f/).
 
 ---------------------------------------

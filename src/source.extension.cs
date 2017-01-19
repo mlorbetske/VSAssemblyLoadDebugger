@@ -13,6 +13,6 @@ namespace AssemblyLoadDebugger
         public const string Language = "en-US";
         public const string Version = "1.0";
         public const string Author = "Mike Lorbetske";
-        public const string Tags = "assembly, performance, assemblies";
+        public const string Tags = "assembly, performance, extensions";
     }
 }

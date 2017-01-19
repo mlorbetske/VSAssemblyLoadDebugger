@@ -9,7 +9,7 @@
     <ReleaseNotes>https://github.com/mlorbetske/VSAssemblyLoadDebugger/blob/master/CHANGELOG.md</ReleaseNotes>
     <Icon>Resources\Icon.png</Icon>
     <PreviewImage>Resources\Icon.png</PreviewImage>
-    <Tags>assembly, performance, assemblies</Tags>
+    <Tags>assembly, performance, extensions</Tags>
   </Metadata>
   <Installation>
     <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[15.0]" />
