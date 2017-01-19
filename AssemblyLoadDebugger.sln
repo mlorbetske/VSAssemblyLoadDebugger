@@ -1,9 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26116.0
+VisualStudioVersion = 15.0.26020.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssemblyLoadDebugger", "src\AssemblyLoadDebugger.csproj", "{3C58ECA5-7983-4A86-AAF6-F98769343FBA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{68D3525F-8495-4921-9B62-4F40860B8F35}"
+	ProjectSection(SolutionItems) = preProject
+		appveyor.yml = appveyor.yml
+		CHANGELOG.md = CHANGELOG.md
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

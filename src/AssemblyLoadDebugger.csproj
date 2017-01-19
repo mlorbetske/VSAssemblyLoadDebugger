@@ -10,10 +10,11 @@
     <UseCodebase>true</UseCodebase>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>Key.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -52,13 +53,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="VSCommandTable.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VSCommandTable.vsct</DependentUpon>
+    </Compile>
+    <Compile Include="source.extension.cs">
+      <DependentUpon>source.extension.vsixmanifest</DependentUpon>
+    </Compile>
     <Compile Include="ToolWindow\ActionCommand.cs" />
     <Compile Include="ToolWindow\AssemblyLoadDebuggerControlViewModel.cs" />
     <Compile Include="Commands\OpenToolWindowCommand.cs" />
     <Compile Include="ToolWindow\AssemblyLoadDebuggerControl.xaml.cs">
       <DependentUpon>AssemblyLoadDebuggerControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AssemblyLoadDebuggerPackage.cs" />
+    <Compile Include="VSPackage.cs" />
     <Compile Include="ToolWindow\AssemblyLoadDebuggerToolWindow.cs" />
     <Compile Include="ToolWindow\AssetCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -67,20 +76,25 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Key.snk" />
     <None Include="packages.config" />
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
+      <Generator>VsixManifestGenerator</Generator>
+      <LastGenOutput>source.extension.resx</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Icon.png">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <VSCTCompile Include="AssemblyLoadDebuggerPackage.vsct">
+    <Content Include="source.extension.ico">
+      <DependentUpon>source.extension.vsixmanifest</DependentUpon>
+    </Content>
+    <VSCTCompile Include="VSCommandTable.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
+      <Generator>VsctGenerator</Generator>
+      <LastGenOutput>VSCommandTable.cs</LastGenOutput>
     </VSCTCompile>
-    <Content Include="Resources\AssemblyLoadDebuggerPackage.ico" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="ToolWindow\AssemblyLoadDebuggerControl.xaml">
@@ -205,7 +219,10 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="VSPackage.resx">
+    <EmbeddedResource Include="source.extension.resx">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>source.extension.vsixmanifest</DependentUpon>
       <MergeWithCTO>true</MergeWithCTO>
       <ManifestResourceName>VSPackage</ManifestResourceName>
     </EmbeddedResource>

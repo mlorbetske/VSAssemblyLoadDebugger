@@ -9,7 +9,7 @@
     {
         public AssemblyLoadDebuggerToolWindow() : base(null)
         {
-            this.Caption = "Assembly Load Debugger";
+            this.Caption = Vsix.Name;
 
             AssemblyLoadDebuggerControl control = new AssemblyLoadDebuggerControl();
             control.DataContext = AssemblyLoadDebuggerControlViewModel.Instance;

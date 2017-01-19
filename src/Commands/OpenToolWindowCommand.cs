@@ -7,16 +7,13 @@ namespace AssemblyLoadDebugger
 {
     internal sealed class OpenToolWindowCommand
     {
-        public const int CommandId = 0x0100;
-        public static readonly Guid CommandSet = new Guid("852872c5-92a2-4343-9bdd-ffd69e03f226");
-
         private readonly Package package;
 
         private OpenToolWindowCommand(Package package, OleMenuCommandService commandService)
         {
             this.package = package ?? throw new ArgumentNullException("package");
 
-            var cmdId = new CommandID(CommandSet, CommandId);
+            var cmdId = new CommandID(PackageGuids.guidAssemblyLoadDebuggerPackageCmdSet, PackageIds.AssemblyLoadDebuggerCommandId);
             var cmd = new MenuCommand(ShowToolWindow, cmdId);
             commandService.AddCommand(cmd);
         }
