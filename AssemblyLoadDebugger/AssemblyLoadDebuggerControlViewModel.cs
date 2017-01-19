@@ -131,7 +131,7 @@ namespace AssemblyLoadDebugger
             {
                 try
                 {
-                    return Regex.IsMatch(args.LoadedAssembly.FullName, x);
+                    return Regex.IsMatch(args.LoadedAssembly.FullName, x, RegexOptions.IgnoreCase);
                 }
                 catch
                 {
@@ -150,7 +150,7 @@ namespace AssemblyLoadDebugger
             }
 
             string s = string.Empty;
-            s += $"Window Title: {Process.GetCurrentProcess().MainModule.FileVersionInfo.FileVersion}{Environment.NewLine}";
+            s += $"Window Title: {Process.GetCurrentProcess().MainWindowTitle} (Process ID: {Process.GetCurrentProcess().Id}){Environment.NewLine}";
             s += $"Main Module File: {Process.GetCurrentProcess().MainModule.FileName}{Environment.NewLine}";
             s += $"Main Module Version: {Process.GetCurrentProcess().MainModule.FileVersionInfo.FileVersion}{Environment.NewLine}";
             s += $"Managed thread ID: {Thread.CurrentThread.ManagedThreadId}{Environment.NewLine}";
