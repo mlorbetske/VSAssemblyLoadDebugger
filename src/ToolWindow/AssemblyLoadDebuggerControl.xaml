@@ -43,13 +43,13 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <Button Grid.Row="3" HorizontalAlignment="Left" Margin="4"
-                Command="{Binding Path=RemoveBreakConditionCommand, Mode=OneWay}"
-                CommandParameter="{Binding Path=SelectedBreakCondition, Mode=OneWay}">Remove</Button>
+                Command="{Binding Path=ClearEntriesCommand, Mode=OneWay}">Clear</Button>
         <Label Grid.Row="4">Break conditions (regular expressions)</Label>
         <ListBox Grid.Row="5" ItemsSource="{Binding Path=BreakOn, Mode=OneWay}" SelectedItem="{Binding Path=SelectedBreakCondition, Mode=TwoWay}" />
         <Grid Grid.Row="6" Margin="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
+                <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
             <TextBox Grid.Column="0" Text="{Binding Path=UserEntryBreakCondition, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
@@ -57,6 +57,9 @@
                     Command="{Binding Path=AddBreakConditionCommand, Mode=OneWay}" 
                     CommandParameter="{Binding Path=UserEntryBreakCondition, Mode=OneWay}"
                     Content="Add" />
+            <Button Grid.Column="2"
+                Command="{Binding Path=RemoveBreakConditionCommand, Mode=OneWay}"
+                CommandParameter="{Binding Path=SelectedBreakCondition, Mode=OneWay}">Remove</Button>
         </Grid>
     </Grid>
 </UserControl>

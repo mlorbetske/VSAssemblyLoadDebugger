@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -24,11 +25,16 @@ namespace AssemblyLoadDebugger
         private string _selectedBreakCondition;
         private string _userEntryBreakCondition;
         private string _searchString;
+        private string _applicationInfo;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         public AssemblyLoadDebuggerControlViewModel()
         {
+            _applicationInfo = $"Window Title: {Process.GetCurrentProcess().MainWindowTitle} (Process ID: {Process.GetCurrentProcess().Id}){Environment.NewLine}";
+            _applicationInfo += $"Main Module File: {Process.GetCurrentProcess().MainModule.FileName}{Environment.NewLine}";
+            _applicationInfo += $"Main Module Version: {Process.GetCurrentProcess().MainModule.FileVersionInfo.FileVersion}{Environment.NewLine}";
+
             Events = new ObservableCollection<string>();
             FilteredEvents = CollectionViewSource.GetDefaultView(Events);
             FilteredEvents.Filter = FilterEvents;
@@ -48,6 +54,12 @@ namespace AssemblyLoadDebugger
             ToggleCaptureCommand = ActionCommand.From(ToggleCapture);
             AddBreakConditionCommand = ActionCommand.From(AddBreakCondition, CanAddBreakCondition, false);
             RemoveBreakConditionCommand = ActionCommand.From(RemoveBreakCondition, CanRemoveBreakCondition, false);
+            ClearEntriesCommand = ActionCommand.From(ClearEntries);
+        }
+
+        private void ClearEntries()
+        {
+            Events.Clear();
         }
 
         private bool FilterEvents(object obj)
@@ -149,29 +161,27 @@ namespace AssemblyLoadDebugger
                 }
             }
 
-            string s = string.Empty;
-            s += $"Window Title: {Process.GetCurrentProcess().MainWindowTitle} (Process ID: {Process.GetCurrentProcess().Id}){Environment.NewLine}";
-            s += $"Main Module File: {Process.GetCurrentProcess().MainModule.FileName}{Environment.NewLine}";
-            s += $"Main Module Version: {Process.GetCurrentProcess().MainModule.FileVersionInfo.FileVersion}{Environment.NewLine}";
+            AssemblyName name = args.LoadedAssembly.GetName();
+            string s = _applicationInfo;
             s += $"Managed thread ID: {Thread.CurrentThread.ManagedThreadId}{Environment.NewLine}";
             s += $"Image: {args.LoadedAssembly.FullName}{Environment.NewLine}";
             s += $"Codebase: {args.LoadedAssembly.CodeBase}{Environment.NewLine}";
             s += $"Location: {args.LoadedAssembly.Location}{Environment.NewLine}";
-            s += $"Name: {args.LoadedAssembly.GetName().Name}{Environment.NewLine}";
-            s += $"Version: {args.LoadedAssembly.GetName().Version}{Environment.NewLine}";
-            s += $"Architecture: {args.LoadedAssembly.GetName().ProcessorArchitecture}{Environment.NewLine}";
-            s += $"Culture: {args.LoadedAssembly.GetName().CultureName}{Environment.NewLine}";
+            s += $"Name: {name.Name}{Environment.NewLine}";
+            s += $"Version: {name.Version}{Environment.NewLine}";
+            s += $"Architecture: {name.ProcessorArchitecture}{Environment.NewLine}";
+            s += $"Culture: {name.CultureName}{Environment.NewLine}";
 
-            byte[] publicKey = args.LoadedAssembly.GetName().GetPublicKey();
+            byte[] publicKey = name.GetPublicKey();
             if (publicKey != null)
             {
                 string hex = string.Join("", publicKey.Select(x => x.ToString("X2")));
                 s += $"Public Key: {hex}{Environment.NewLine}";
-                s += $"Hash Algorithm: {args.LoadedAssembly.GetName().HashAlgorithm}{Environment.NewLine}";
+                s += $"Hash Algorithm: {name.HashAlgorithm}{Environment.NewLine}";
             }
 
             s += $"Image Runtime Version: {args.LoadedAssembly.ImageRuntimeVersion}{Environment.NewLine}";
-            s += $"Flags: {args.LoadedAssembly.GetName().Flags}{Environment.NewLine}";
+            s += $"Flags: {name.Flags}{Environment.NewLine}";
             s += $"Is Dynamic: {args.LoadedAssembly.IsDynamic}{Environment.NewLine}";
             s += $"Is Fully Trusted: {args.LoadedAssembly.IsFullyTrusted}{Environment.NewLine}";
             s += $"Reflection Only: {args.LoadedAssembly.ReflectionOnly}{Environment.NewLine}";
@@ -196,6 +206,8 @@ namespace AssemblyLoadDebugger
         public ICommand AddBreakConditionCommand { get; }
 
         public ICommand RemoveBreakConditionCommand { get; }
+
+        public ICommand ClearEntriesCommand { get; }
 
         public ICollectionView FilteredEvents { get; }
 
