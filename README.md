@@ -16,8 +16,21 @@ See the [change log](CHANGELOG.md) for changes and road map.
 
 - Show assemblies loaded
 
-### Show assemblies loaded
-coming soon...
+### Show the tool window
+Go to View -> Other Windows -> Assembly Load Debugger to open the tool window.
+
+![View - Other Windows](art/view-otherwindows.png)
+
+### Capturing assembly load events
+Click the Capture button in the tool window to start capturing assembly load events. It will then start listing all the assemblies being loaded by Visual Studio.
+
+![Capture load events](art/toolwindow-capturing.png)
+
+### Show the call stack from an assembly load
+By clicking on any of the assembly names in the tool window will open a full call stack to help identify what component was responsible for loading the assembly.
+
+Here's [an example](example-callstack.txt) of what such a call stack could look like.
+
 
 ## Contribute
 Check out the [contribution guidelines](.github/CONTRIBUTING.md)

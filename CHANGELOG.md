@@ -1,6 +1,6 @@
 # Road map
 
-- [ ] Clear tool window
+- [x] Nothing yet...
 
 Features that have a checkmark are complete and available for
 download in the
@@ -15,3 +15,6 @@ on the official Visual Studio extension gallery.
 ## 1.0
 
 - [x] Initial release
+- [x] Clear tool window
+- [x] Button to show tool window
+- [x] Capture assemby loads

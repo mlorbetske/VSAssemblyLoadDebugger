@@ -1,0 +1,85 @@
+Window Title: Microsoft Visual Studio - Experimental Instance (Process ID: 21032)
+Main Module File: C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\devenv.exe
+Main Module Version: 15.0.26020.0 built by: D15REL
+Managed thread ID: 1
+Image: Minimatch, Version=1.1.0.0, Culture=neutral, PublicKeyToken=0cadeb0b849c27c0
+Codebase: file:///C:/Program Files (x86)/Microsoft Visual Studio/2017/Enterprise/Common7/IDE/Extensions/Microsoft/Web Tools/Editors/Minimatch.dll
+Location: C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\Extensions\Microsoft\Web Tools\Editors\Minimatch.dll
+Name: Minimatch
+Version: 1.1.0.0
+Architecture: MSIL
+Culture:
+Public Key: 0024000004800000940000000602000000240000525341310004000001000100019C1BBDBBF533B31BACCAFB2BD20E2A23411265E281EDE5E3526761FD3C80782FF41475D71CBD629DF6E71B87DDAC431EFA600B4291C28036FD73400EBBC7993D4BDCD584638E6EF25CF9F04A0FE1A27D87A622523B69162FB05644F0C95D9A4AD9668E52EBA7E05B95A442DA0B0564B76A2195977C412ECAEA399D8FBB60D7
+Hash Algorithm: SHA1
+Image Runtime Version: v4.0.30319
+Flags: PublicKey
+Is Dynamic: False
+Is Fully Trusted: True
+Reflection Only: False
+Time: 1/19/2017 13:03:07
+   at EditorConfig.EditorConfigValidator..cctor()
+   at EditorConfig.EditorConfigValidator.FromDocument(EditorConfigDocument document)
+   at EditorConfig.SeverityTagger..ctor(ITextBuffer buffer) in C:\Users\madsk\Documents\GitHub\EditorConfig\src\Adornments\SeverityTagger.cs:line 19
+   at EditorConfig.SeverityTaggerProvider.<>c__DisplayClass0_0`1.<CreateTagger>b__0() in C:\Users\madsk\Documents\GitHub\EditorConfig\src\Adornments\SeverityTaggerProvider.cs:line 16
+   at Microsoft.VisualStudio.Utilities.PropertyCollection.GetOrCreateSingletonProperty[T](Object key, Func`1 creator)
+   at Microsoft.VisualStudio.Utilities.PropertyCollection.GetOrCreateSingletonProperty[T](Func`1 creator)
+   at EditorConfig.SeverityTaggerProvider.CreateTagger[T](ITextBuffer buffer) in C:\Users\madsk\Documents\GitHub\EditorConfig\src\Adornments\SeverityTaggerProvider.cs:line 16
+   at Microsoft.VisualStudio.Text.Tagging.Implementation.TagAggregator`1.GatherTaggers(ITextBuffer textBuffer)
+   at Microsoft.VisualStudio.Text.Tagging.Implementation.TagAggregator`1.<Initialize>b__13_0(ITextBuffer buffer)
+   at Microsoft.VisualStudio.Text.Projection.Implementation.BufferGraph.GetTextBuffers(Predicate`1 match)
+   at Microsoft.VisualStudio.Text.Tagging.Implementation.TagAggregator`1.Initialize()
+   at Microsoft.VisualStudio.Text.Tagging.Implementation.TagAggregator`1..ctor(TagAggregatorFactoryService factory, ITextView textView, IBufferGraph bufferGraph, TagAggregatorOptions options)
+   at Microsoft.VisualStudio.Text.Tagging.Implementation.TagAggregatorFactoryService.CreateTagAggregator[T](ITextBuffer textBuffer, TagAggregatorOptions options)
+   at Microsoft.VisualStudio.Text.Tagging.Implementation.TagAggregatorFactoryService.CreateTagAggregator[T](ITextBuffer textBuffer)
+   at EditorConfig.SeverityAdornmentTaggerProvider.<>c__DisplayClass4_0`1.<CreateTagger>b__0() in C:\Users\madsk\Documents\GitHub\EditorConfig\src\Adornments\SeverityAdornmentTaggerProvider.cs:line 20
+   at System.Lazy`1.CreateValue()
+   at System.Lazy`1.LazyInitValue()
+   at System.Lazy`1.get_Value()
+   at EditorConfig.SeverityAdornmentTagger.<>c__DisplayClass2_0.<GetTagger>b__0() in C:\Users\madsk\Documents\GitHub\EditorConfig\src\Adornments\SeverityAdornmentTagger.cs:line 21
+   at Microsoft.VisualStudio.Utilities.PropertyCollection.GetOrCreateSingletonProperty[T](Object key, Func`1 creator)
+   at Microsoft.VisualStudio.Utilities.PropertyCollection.GetOrCreateSingletonProperty[T](Func`1 creator)
+   at EditorConfig.SeverityAdornmentTagger.GetTagger(IWpfTextView view, Lazy`1 colorTagger) in C:\Users\madsk\Documents\GitHub\EditorConfig\src\Adornments\SeverityAdornmentTagger.cs:line 21
+   at EditorConfig.SeverityAdornmentTaggerProvider.CreateTagger[T](ITextView textView, ITextBuffer buffer) in C:\Users\madsk\Documents\GitHub\EditorConfig\src\Adornments\SeverityAdornmentTaggerProvider.cs:line 22
+   at Microsoft.VisualStudio.Text.Tagging.Implementation.TagAggregator`1.GatherTaggers(ITextBuffer textBuffer)
+   at Microsoft.VisualStudio.Text.Tagging.Implementation.TagAggregator`1.<Initialize>b__13_0(ITextBuffer buffer)
+   at Microsoft.VisualStudio.Text.Projection.Implementation.BufferGraph.GetTextBuffers(Predicate`1 match)
+   at Microsoft.VisualStudio.Text.Tagging.Implementation.TagAggregator`1.Initialize()
+   at Microsoft.VisualStudio.Text.Tagging.Implementation.TagAggregator`1..ctor(TagAggregatorFactoryService factory, ITextView textView, IBufferGraph bufferGraph, TagAggregatorOptions options)
+   at Microsoft.VisualStudio.Text.Tagging.Implementation.TagAggregatorFactoryService.CreateTagAggregator[T](ITextView textView, TagAggregatorOptions options)
+   at Microsoft.VisualStudio.Text.Tagging.Implementation.TagAggregatorFactoryService.CreateTagAggregator[T](ITextView textView)
+   at Microsoft.VisualStudio.Text.IntraTextAdornmentSupport.Implementation.IntraTextAdornmentSpaceNegotiatingTaggerProvider.<>c__DisplayClass5_0`1.<CreateTagger>b__0()
+   at Microsoft.VisualStudio.Utilities.PropertyCollection.GetOrCreateSingletonProperty[T](Object key, Func`1 creator)
+   at Microsoft.VisualStudio.Text.IntraTextAdornmentSupport.Implementation.IntraTextAdornmentSpaceNegotiatingTaggerProvider.CreateTagger[T](ITextView textView, ITextBuffer buffer)
+   at Microsoft.VisualStudio.Text.Tagging.Implementation.TagAggregator`1.GatherTaggers(ITextBuffer textBuffer)
+   at Microsoft.VisualStudio.Text.Tagging.Implementation.TagAggregator`1.<Initialize>b__13_0(ITextBuffer buffer)
+   at Microsoft.VisualStudio.Text.Projection.Implementation.BufferGraph.GetTextBuffers(Predicate`1 match)
+   at Microsoft.VisualStudio.Text.Tagging.Implementation.TagAggregator`1.Initialize()
+   at Microsoft.VisualStudio.Text.Tagging.Implementation.TagAggregator`1..ctor(TagAggregatorFactoryService factory, ITextView textView, IBufferGraph bufferGraph, TagAggregatorOptions options)
+   at Microsoft.VisualStudio.Text.Tagging.Implementation.TagAggregatorFactoryService.CreateTagAggregator[T](ITextView textView, TagAggregatorOptions options)
+   at Microsoft.VisualStudio.Text.Tagging.Implementation.TagAggregatorFactoryService.CreateTagAggregator[T](ITextView textView)
+   at Microsoft.VisualStudio.Text.TextAndAdornmentSequencer.Implementation.TextAndAdornmentSequencer..ctor(ITextView view, IViewTagAggregatorFactoryService tagAggregatorFactoryService)
+   at Microsoft.VisualStudio.Text.TextAndAdornmentSequencer.Implementation.TextAndAdornmentSequencer.<>c__DisplayClass4_0.<GetSequencer>b__0()
+   at Microsoft.VisualStudio.Utilities.PropertyCollection.GetOrCreateSingletonProperty[T](Object key, Func`1 creator)
+   at Microsoft.VisualStudio.Text.TextAndAdornmentSequencer.Implementation.TextAndAdornmentSequencer.GetSequencer(ITextView view, IViewTagAggregatorFactoryService tagAggregatorFactoryService)
+   at Microsoft.VisualStudio.Text.TextAndAdornmentSequencer.Implementation.TextAndAdornmentSequencerFactoryService.Create(ITextView view)
+   at Microsoft.VisualStudio.Text.Editor.Implementation.WpfTextView.Initialize()
+   at Microsoft.VisualStudio.Text.Editor.Implementation.WpfTextEditorFactoryService.InitializeTextView(IWpfTextView view)
+   at Microsoft.VisualStudio.Editor.Implementation.SimpleTextViewWindow.Init_InitializeWpfTextView()
+   at Microsoft.VisualStudio.Editor.Implementation.SimpleTextViewWindow.Init_OnActivation()
+   at Microsoft.VisualStudio.Editor.Implementation.SimpleTextViewWindow.SetInfo()
+   at Microsoft.VisualStudio.Editor.Implementation.CompoundTextViewWindow.SetInfo()
+   at Microsoft.VisualStudio.PlatformUI.StatusBarService.OnElementValueChanged(UInt32 elementid, Object varValueOld, Object varValueNew)
+   at Microsoft.Internal.VisualStudio.Shell.Interop.IVsTrackSelectionExPrivate.Register()
+   at Microsoft.VisualStudio.Platform.WindowManagement.WindowFrame.ConnectSelectionContext()
+   at Microsoft.VisualStudio.Platform.WindowManagement.WindowFrame.Activate()
+   at Microsoft.VisualStudio.Platform.WindowManagement.WindowManagerService.viewManager_ActiveViewChanged(Object sender, ActiveViewChangedEventArgs e)
+   at Microsoft.VisualStudio.PlatformUI.ExtensionMethods.RaiseEvent[TEventArgs](EventHandler`1 eventHandler, Object source, TEventArgs args)
+   at Microsoft.VisualStudio.PlatformUI.Shell.ViewManager.SetActiveView(View view, ActivationType type)
+   at Microsoft.VisualStudio.Platform.WindowManagement.WindowFrame.ShowInternal(ShowFlags showFlags)
+   at Microsoft.VisualStudio.Platform.WindowManagement.WindowFrame.<Show>b__497_0()
+   at Microsoft.VisualStudio.ErrorHandler.CallWithCOMConvention(Func`1 method, Boolean reportError, Boolean setShellErrorInfo)
+   at Microsoft.VisualStudio.Platform.WindowManagement.WindowFrame.Show()
+   at Microsoft.VisualStudio.Platform.WindowManagement.WindowFrame.MarshalingWindowFrame.<Microsoft.VisualStudio.Shell.Interop.IVsWindowFrame.Show>b__12_0()
+   at Microsoft.VisualStudio.Shell.ThreadHelper.Invoke[TResult](Func`1 method)
+   at Microsoft.VisualStudio.Platform.WindowManagement.WindowFrame.MarshalingWindowFrame.Microsoft.VisualStudio.Shell.Interop.IVsWindowFrame.Show()
+
