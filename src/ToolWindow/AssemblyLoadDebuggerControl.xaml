@@ -21,7 +21,7 @@
         <ToggleButton HorizontalAlignment="Left" Margin="4"
                       Command="{Binding Path=ToggleCaptureCommand, Mode=OneTime}" 
                       IsChecked="{Binding Path=IsCapturing, Mode=OneWay}"
-                      Content="Capture"/>
+                      Content="{Binding Path=CaptureButtonText, Mode=OneWay}"/>
         <Grid Grid.Row="1" Margin="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" />
@@ -42,8 +42,12 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button Grid.Row="3" HorizontalAlignment="Left" Margin="4"
-                Command="{Binding Path=ClearEntriesCommand, Mode=OneWay}">Clear</Button>
+        <StackPanel  Grid.Row="3" Orientation="Horizontal">
+            <Button HorizontalAlignment="Left" Margin="4"
+                    Command="{Binding Path=ClearEntriesCommand, Mode=OneWay}">Clear</Button>
+            <Button HorizontalAlignment="Left" Margin="4"
+                    Command="{Binding Path=CopyEntriesCommand, Mode=OneWay}">Copy</Button>
+        </StackPanel>
         <Label Grid.Row="4">Break conditions (regular expressions)</Label>
         <ListBox Grid.Row="5" ItemsSource="{Binding Path=BreakOn, Mode=OneWay}" SelectedItem="{Binding Path=SelectedBreakCondition, Mode=TwoWay}" />
         <Grid Grid.Row="6" Margin="4">

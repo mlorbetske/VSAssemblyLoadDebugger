@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -55,11 +56,58 @@ namespace AssemblyLoadDebugger
             AddBreakConditionCommand = ActionCommand.From(AddBreakCondition, CanAddBreakCondition, false);
             RemoveBreakConditionCommand = ActionCommand.From(RemoveBreakCondition, CanRemoveBreakCondition, false);
             ClearEntriesCommand = ActionCommand.From(ClearEntries);
+            CopyEntriesCommand = ActionCommand.From(CopyEntries);
+        }
+
+        internal void Close()
+        {
+            if (Directory.Exists(_tempDirectory))
+            {
+                try
+                {
+                    Directory.Delete(_tempDirectory, recursive: true);
+                }
+                catch
+                {
+                }
+            }
         }
 
         private void ClearEntries()
         {
             Events.Clear();
+        }
+
+        private void CopyEntries()
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach(var evt in Events)
+            {
+                sb.AppendLine(evt);
+                sb.AppendLine(File.ReadAllText($@"{_tempDirectory}\{evt}.txt"));
+            }
+
+            if (sb.Length > 0)
+            {
+                SetClipboardText(sb.ToString());
+            }
+        }
+
+        private void SetClipboardText(string text)
+        {
+            int retries = 2;
+            while(retries-- > 0)
+            {
+                try
+                {
+                    Clipboard.SetText(text);
+                    return;
+                }
+                catch (ExternalException)
+                {
+                }
+                System.Threading.Thread.Sleep(50);
+            }
         }
 
         private bool FilterEvents(object obj)
@@ -81,6 +129,14 @@ namespace AssemblyLoadDebugger
                 _searchString = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SearchString)));
                 FilteredEvents.Refresh();
+            }
+        }
+
+        public string CaptureButtonText
+        {
+            get
+            {
+                return IsCapturing ? "Stop Capture" : "Capture";
             }
         }
 
@@ -109,6 +165,7 @@ namespace AssemblyLoadDebugger
             {
                 _isCapturing = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsCapturing)));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CaptureButtonText)));
             }
         }
 
@@ -208,6 +265,8 @@ namespace AssemblyLoadDebugger
         public ICommand RemoveBreakConditionCommand { get; }
 
         public ICommand ClearEntriesCommand { get; }
+
+        public ICommand CopyEntriesCommand { get; }
 
         public ICollectionView FilteredEvents { get; }
 
