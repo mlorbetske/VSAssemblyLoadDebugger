@@ -2,7 +2,6 @@
 {
     using System;
     using System.Runtime.InteropServices;
-    using System.Windows.Controls;
     using Microsoft.VisualStudio.Shell;
 
     [Guid("71604717-b15d-4d1e-9fb4-03f5122e8858")]

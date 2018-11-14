@@ -18,10 +18,15 @@
             <RowDefinition />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
-        <ToggleButton HorizontalAlignment="Left" Margin="4"
+        <StackPanel  Grid.Row="0" Orientation="Horizontal">
+            <ToggleButton HorizontalAlignment="Left" Margin="4"
                       Command="{Binding Path=ToggleCaptureCommand, Mode=OneTime}" 
                       IsChecked="{Binding Path=IsCapturing, Mode=OneWay}"
                       Content="{Binding Path=CaptureButtonText, Mode=OneWay}"/>
+            <CheckBox HorizontalAlignment="Left" Margin="6,4,4,4" VerticalAlignment="Center" 
+                      IsChecked="{Binding Path=IsAutoCapturing, Mode=TwoWay}"
+                      Content="Start capture when loaded"/>
+        </StackPanel>
         <Grid Grid.Row="1" Margin="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" />
@@ -55,6 +60,7 @@
                 <ColumnDefinition />
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
             <TextBox Grid.Column="0" Text="{Binding Path=UserEntryBreakCondition, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             <Button Grid.Column="1" 
@@ -64,6 +70,8 @@
             <Button Grid.Column="2"
                 Command="{Binding Path=RemoveBreakConditionCommand, Mode=OneWay}"
                 CommandParameter="{Binding Path=SelectedBreakCondition, Mode=OneWay}">Remove</Button>
+            <Button Grid.Column="3"
+                Command="{Binding Path=ClearAllBreakpointsCommand, Mode=OneWay}">Clear</Button>
         </Grid>
     </Grid>
 </UserControl>
