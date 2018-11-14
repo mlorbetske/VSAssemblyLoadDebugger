@@ -30,6 +30,7 @@ namespace AssemblyLoadDebugger
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        private Settings _settings;
         public AssemblyLoadDebuggerControlViewModel()
         {
             _applicationInfo = $"Window Title: {Process.GetCurrentProcess().MainWindowTitle} (Process ID: {Process.GetCurrentProcess().Id}){Environment.NewLine}";
@@ -39,13 +40,14 @@ namespace AssemblyLoadDebugger
             Events = new ObservableCollection<string>();
             FilteredEvents = CollectionViewSource.GetDefaultView(Events);
             FilteredEvents.Filter = FilterEvents;
-            BreakOn = new List<string>();
 
             string tempFile = Path.GetTempFileName();
             File.Delete(tempFile);
             Directory.CreateDirectory(tempFile);
             _tempDirectory = tempFile;
             
+            _settings = Settings.FromFile(SettingsFilePath);
+
             OpenLogCommand = ActionCommand.From<string>(file =>
             {
                 DTE2 dte = ServiceProvider.GlobalProvider.GetService(typeof(SDTE)) as DTE2;
@@ -55,12 +57,38 @@ namespace AssemblyLoadDebugger
             ToggleCaptureCommand = ActionCommand.From(ToggleCapture);
             AddBreakConditionCommand = ActionCommand.From(AddBreakCondition, CanAddBreakCondition, false);
             RemoveBreakConditionCommand = ActionCommand.From(RemoveBreakCondition, CanRemoveBreakCondition, false);
+            ClearAllBreakpointsCommand = ActionCommand.From(ClearAllBreakpoints, CanClearAllBreakpointsCondition, false);
             ClearEntriesCommand = ActionCommand.From(ClearEntries);
             CopyEntriesCommand = ActionCommand.From(CopyEntries);
+
+            if (IsAutoCapturing)
+            {
+                ToggleCapture();
+            }
+        }
+
+        private string _settingsFilePath;
+        private string SettingsFilePath
+        {
+            get
+            {
+                if (_settingsFilePath == null)
+                {
+                    var shell = ServiceProvider.GlobalProvider.GetService(typeof(SVsShell)) as IVsShell;
+                    object oPath;
+                    shell.GetProperty((int)__VSSPROPID4.VSSPROPID_LocalAppDataDir, out oPath);
+                    string localVsDataPath = (oPath is string) ? (string)oPath : Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+                    _settingsFilePath =  Path.Combine(localVsDataPath, "AssemblyLoadDebuggerSettings.json");;
+                }
+
+                return _settingsFilePath;
+            }
         }
 
         internal void Close()
         {
+            _settings?.SaveSettings(SettingsFilePath);
+
             if (Directory.Exists(_tempDirectory))
             {
                 try
@@ -81,7 +109,7 @@ namespace AssemblyLoadDebugger
         private void CopyEntries()
         {
             StringBuilder sb = new StringBuilder();
-            foreach(var evt in Events)
+            foreach(string evt in FilteredEvents)
             {
                 sb.AppendLine(evt);
                 sb.AppendLine(File.ReadAllText($@"{_tempDirectory}\{evt}.txt"));
@@ -150,6 +178,11 @@ namespace AssemblyLoadDebugger
             return SelectedBreakCondition != null;
         }
 
+        private bool CanClearAllBreakpointsCondition()
+        {
+            return BreakOn?.Count > 0;
+        }
+
         private void AddBreakCondition()
         {
             BreakOn.Add(UserEntryBreakCondition.Trim());
@@ -169,6 +202,18 @@ namespace AssemblyLoadDebugger
             }
         }
 
+        public bool IsAutoCapturing 
+        { 
+            get
+            {
+                return _settings.AutoCapture;
+            }
+            set
+            {
+                _settings.AutoCapture = value;
+            }
+        }
+
         private void RemoveBreakCondition()
         {
             BreakOn.Remove(SelectedBreakCondition);
@@ -177,7 +222,24 @@ namespace AssemblyLoadDebugger
             PropertyChanged(this, new PropertyChangedEventArgs(nameof(BreakOn)));
         }
 
-        public List<string> BreakOn { get; private set; }
+        private void ClearAllBreakpoints()
+        {
+            BreakOn = new List<string>();
+            SelectedBreakCondition = null;
+            PropertyChanged(this, new PropertyChangedEventArgs(nameof(BreakOn)));
+        }
+
+        public List<string> BreakOn 
+        { 
+            get
+            {
+                return _settings.BreakPoints;
+            }
+            private set
+            {
+                _settings.BreakPoints = value;
+            }
+        }
 
         private void ToggleCapture()
         {
@@ -264,7 +326,9 @@ namespace AssemblyLoadDebugger
 
         public ICommand RemoveBreakConditionCommand { get; }
 
-        public ICommand ClearEntriesCommand { get; }
+        public ICommand ClearAllBreakpointsCommand { get; }
+        
+       public ICommand ClearEntriesCommand { get; }
 
         public ICommand CopyEntriesCommand { get; }
 
