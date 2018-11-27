@@ -51,7 +51,7 @@ namespace AssemblyLoadDebugger
             OpenLogCommand = ActionCommand.From<string>(file =>
             {
                 DTE2 dte = ServiceProvider.GlobalProvider.GetService(typeof(SDTE)) as DTE2;
-                dte?.ItemOperations?.OpenFile($@"{_tempDirectory}\{file}.txt");
+                dte?.ItemOperations?.OpenFile($@"{_tempDirectory}\{file.Replace(": ", "-")}.txt");
             });
 
             ToggleCaptureCommand = ActionCommand.From(ToggleCapture);
@@ -248,21 +248,22 @@ namespace AssemblyLoadDebugger
             if (_isCapturing)
             {
                 AppDomain.CurrentDomain.AssemblyLoad += OnAssemblyLoaded;
+                AppDomain.CurrentDomain.AssemblyResolve += OnAssemblyResolve;
             }
             else
             {
                 AppDomain.CurrentDomain.AssemblyLoad -= OnAssemblyLoaded;
+                AppDomain.CurrentDomain.AssemblyResolve -= OnAssemblyResolve;
             }
         }
 
-        [DebuggerStepThrough]
-        private void OnAssemblyLoaded(object sender, AssemblyLoadEventArgs args)
+        private Assembly OnAssemblyResolve(object sender, ResolveEventArgs args)
         {
             if (BreakOn.Any(x =>
             {
                 try
                 {
-                    return Regex.IsMatch(args.LoadedAssembly.FullName, x, RegexOptions.IgnoreCase);
+                    return Regex.IsMatch(args.Name, x, RegexOptions.IgnoreCase);
                 }
                 catch
                 {
@@ -280,6 +281,26 @@ namespace AssemblyLoadDebugger
                 }
             }
 
+            string s = _applicationInfo;
+            s += $"Managed thread ID: {Thread.CurrentThread.ManagedThreadId}{Environment.NewLine}";
+            s += $"Requested name: {args.Name}{Environment.NewLine}";
+            s += $"Requesting assembly: {args.RequestingAssembly?.FullName ?? "(Unknown)"}{Environment.NewLine}";
+
+            s += $"Time: {DateTime.Now}{Environment.NewLine}";
+            s += new StackTrace(3, true).ToString();
+            Application.Current.Dispatcher.BeginInvoke((Action)(() => Events.Add("BIND: " + args.Name)), System.Windows.Threading.DispatcherPriority.ApplicationIdle);
+            using (Stream str = File.OpenWrite($@"{_tempDirectory}\BIND-{args.Name}.txt"))
+            using (StreamWriter w = new StreamWriter(str, Encoding.UTF8, 8192, true))
+            {
+                w.WriteLine(s);
+            }
+
+            return null;
+        }
+
+        [DebuggerStepThrough]
+        private void OnAssemblyLoaded(object sender, AssemblyLoadEventArgs args)
+        {
             AssemblyName name = args.LoadedAssembly.GetName();
             string s = _applicationInfo;
             s += $"Managed thread ID: {Thread.CurrentThread.ManagedThreadId}{Environment.NewLine}";
