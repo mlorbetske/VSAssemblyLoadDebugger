@@ -259,27 +259,7 @@ namespace AssemblyLoadDebugger
 
         private Assembly OnAssemblyResolve(object sender, ResolveEventArgs args)
         {
-            if (BreakOn.Any(x =>
-            {
-                try
-                {
-                    return Regex.IsMatch(args.Name, x, RegexOptions.IgnoreCase);
-                }
-                catch
-                {
-                    return false;
-                }
-            }))
-            {
-                if (Debugger.IsAttached)
-                {
-                    Debugger.Break();
-                }
-                else
-                {
-                    Debugger.Launch();
-                }
-            }
+            BreakIfAssemblyMatches(args.Name);
 
             string s = _applicationInfo;
             s += $"Managed thread ID: {Thread.CurrentThread.ManagedThreadId}{Environment.NewLine}";
@@ -301,6 +281,8 @@ namespace AssemblyLoadDebugger
         [DebuggerStepThrough]
         private void OnAssemblyLoaded(object sender, AssemblyLoadEventArgs args)
         {
+            BreakIfAssemblyMatches(args.LoadedAssembly.FullName);
+
             AssemblyName name = args.LoadedAssembly.GetName();
             string s = _applicationInfo;
             s += $"Managed thread ID: {Thread.CurrentThread.ManagedThreadId}{Environment.NewLine}";
@@ -332,6 +314,31 @@ namespace AssemblyLoadDebugger
             using (StreamWriter w = new StreamWriter(str, Encoding.UTF8, 8192, true))
             {
                 w.WriteLine(s);
+            }
+        }
+
+        private void BreakIfAssemblyMatches(string assemblyName)
+        {
+            if (BreakOn.Any(x =>
+            {
+                try
+                {
+                    return Regex.IsMatch(assemblyName, x, RegexOptions.IgnoreCase);
+                }
+                catch
+                {
+                    return false;
+                }
+            }))
+            {
+                if (Debugger.IsAttached)
+                {
+                    Debugger.Break();
+                }
+                else
+                {
+                    Debugger.Launch();
+                }
             }
         }
 
