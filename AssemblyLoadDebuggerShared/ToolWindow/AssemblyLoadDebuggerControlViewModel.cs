@@ -17,7 +17,7 @@ using EnvDTE80;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 
-namespace AssemblyLoadDebugger
+namespace ToolWindow
 {
     public class AssemblyLoadDebuggerControlViewModel : INotifyPropertyChanged
     {

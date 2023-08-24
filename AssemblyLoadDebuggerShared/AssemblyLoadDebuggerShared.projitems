@@ -9,5 +9,31 @@
     <Import_RootNamespace>AssemblyLoadDebuggerShared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Resources\Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\OpenToolWindowCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ToolWindow\ActionCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ToolWindow\AssemblyLoadDebuggerControl.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ToolWindow\AssemblyLoadDebuggerControlViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ToolWindow\AssemblyLoadDebuggerToolWindow.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ToolWindow\AssetCache.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ToolWindow\Settings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ToolWindow\SharedVsTheme.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ToolWindow\WpfUtil.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VSCommandTable.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)VSPackage.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)ToolWindow\AssemblyLoadDebuggerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)VSCommandTable.vsct" />
   </ItemGroup>
 </Project>

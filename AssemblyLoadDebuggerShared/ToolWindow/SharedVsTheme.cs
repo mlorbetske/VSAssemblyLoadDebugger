@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.PlatformUI;
 
-namespace AssemblyLoadDebugger
+namespace ToolWindow
 {
     public static class SharedVsTheme
     {

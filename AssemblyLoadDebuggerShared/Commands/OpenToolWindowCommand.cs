@@ -1,9 +1,11 @@
-﻿using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Shell.Interop;
-using System;
+﻿using System;
 using System.ComponentModel.Design;
+using AssemblyLoadDebugger;
+using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Shell.Interop;
+using ToolWindow;
 
-namespace AssemblyLoadDebugger
+namespace Commands
 {
     internal sealed class OpenToolWindowCommand
     {

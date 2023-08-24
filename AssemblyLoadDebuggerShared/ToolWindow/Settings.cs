@@ -3,7 +3,7 @@ using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace AssemblyLoadDebugger
+namespace ToolWindow
 {
     [JsonObject(MemberSerialization.OptIn)]
     public class Settings

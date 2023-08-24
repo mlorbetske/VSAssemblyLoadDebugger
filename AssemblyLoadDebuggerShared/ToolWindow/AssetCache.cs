@@ -9,7 +9,7 @@ using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 using ImageAttributes = Microsoft.VisualStudio.Imaging.Interop.ImageAttributes;
 
-namespace AssemblyLoadDebugger
+namespace ToolWindow
 {
     public static class AssetCache
     {
