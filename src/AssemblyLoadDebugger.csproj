@@ -78,6 +78,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\SharedResources\Icon.png">
+      <Link>Resources\Icon.png</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <VSCTCompile Include="..\SharedResources\VSCommandTable.vsct">
+      <Link>VSCommandTable.vsct</Link>
+    </VSCTCompile>
     <Content Include="source.extension.ico">
       <DependentUpon>source.extension.vsixmanifest</DependentUpon>
     </Content>

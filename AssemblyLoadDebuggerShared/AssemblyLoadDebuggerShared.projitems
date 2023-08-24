@@ -9,9 +9,6 @@
     <Import_RootNamespace>AssemblyLoadDebuggerShared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="$(MSBuildThisFileDirectory)Resources\Icon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Commands\OpenToolWindowCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ToolWindow\ActionCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ToolWindow\AssemblyLoadDebuggerControl.xaml.cs" />
@@ -34,6 +31,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)VSCommandTable.vsct" />
+    <Folder Include="$(MSBuildThisFileDirectory)Resources\" />
   </ItemGroup>
 </Project>
