@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28304.4001
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33927.249
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{68D3525F-8495-4921-9B62-4F40860B8F35}"
 	ProjectSection(SolutionItems) = preProject
@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssemblyLoadDebugger", "src\AssemblyLoadDebugger.csproj", "{3C58ECA5-7983-4A86-AAF6-F98769343FBA}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "AssemblyLoadDebuggerShared", "AssemblyLoadDebuggerShared\AssemblyLoadDebuggerShared.shproj", "{A0C1B03A-E53A-460D-9D88-EBC6F9EE2C23}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,5 +30,8 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {39486E16-53D3-4D9D-A861-FA877B6ED9BC}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		AssemblyLoadDebuggerShared\AssemblyLoadDebuggerShared.projitems*{a0c1b03a-e53a-460d-9d88-ebc6f9ee2c23}*SharedItemsImports = 13
 	EndGlobalSection
 EndGlobal
