@@ -32,6 +32,7 @@ Global
 		SolutionGuid = {39486E16-53D3-4D9D-A861-FA877B6ED9BC}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		AssemblyLoadDebuggerShared\AssemblyLoadDebuggerShared.projitems*{3c58eca5-7983-4a86-aaf6-f98769343fba}*SharedItemsImports = 4
 		AssemblyLoadDebuggerShared\AssemblyLoadDebuggerShared.projitems*{a0c1b03a-e53a-460d-9d88-ebc6f9ee2c23}*SharedItemsImports = 13
 	EndGlobalSection
 EndGlobal
