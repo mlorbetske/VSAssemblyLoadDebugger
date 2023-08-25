@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace AssemblyLoadDebugger
+namespace ToolWindow
 {
     internal class ActionCommand<T> : ICommand
     {

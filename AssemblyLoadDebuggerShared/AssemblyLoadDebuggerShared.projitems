@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>a0c1b03a-e53a-460d-9d88-ebc6f9ee2c23</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>AssemblyLoadDebuggerShared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\OpenToolWindowCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ToolWindow\ActionCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ToolWindow\AssemblyLoadDebuggerControl.xaml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ToolWindow\AssemblyLoadDebuggerControlViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ToolWindow\AssemblyLoadDebuggerToolWindow.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ToolWindow\AssetCache.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ToolWindow\Settings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ToolWindow\SharedVsTheme.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ToolWindow\WpfUtil.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)VSCommandTable.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)VSPackage.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)ToolWindow\AssemblyLoadDebuggerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Resources\" />
+  </ItemGroup>
+</Project>

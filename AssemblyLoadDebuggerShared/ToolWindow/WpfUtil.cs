@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Microsoft.VisualStudio.Shell;
 
-namespace AssemblyLoadDebugger
+namespace ToolWindow
 {
     public static class ThemeUtils
     {
