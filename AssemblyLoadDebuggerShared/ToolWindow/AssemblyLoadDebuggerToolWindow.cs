@@ -9,7 +9,7 @@ namespace ToolWindow
     {
         public AssemblyLoadDebuggerToolWindow() : base(null)
         {
-            this.Caption = Vsix.Name;
+            this.Caption = "Assembly Load Debugger";
 
             AssemblyLoadDebuggerControl control = new AssemblyLoadDebuggerControl();
             control.DataContext = AssemblyLoadDebuggerControlViewModel.Instance;
